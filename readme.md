@@ -6,10 +6,10 @@ tsc --init
 
 ### ビルド
 
-tsc hello.ts
+tsc main.ts
 
--> hello.js ができる
+-> main.js ができる
 
 ### 実行
 
-node hello.js
+node main.js
