@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:staging": "ts-node src/main.ts"
   },
   "author": "",
   "license": "ISC",
@@ -18,5 +19,6 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.8"
-  }
+  },
+  "type": "module"
 }

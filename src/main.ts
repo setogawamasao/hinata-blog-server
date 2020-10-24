@@ -9,13 +9,13 @@ const init = async () => {
   console.log("connect data base");
   const con = await createConnection();
 
-  // const blog = new Blogs();
-  // blog.posted_by = "金村美玖";
-  // blog.title = "蚊取り線香の匂いがする";
-  // blog.url =
-  //   "https://www.hinatazaka46.com/s/official/diary/detail/35532?ima=0000&cd=member";
-  // blog.posted_at = new Date("2020-09-09T22:47:00");
-  // await con.manager.save(blog);
+  const blog = new Blogs();
+  blog.posted_by = "金村美玖";
+  blog.title = "蚊取り線香の匂いがする";
+  blog.url =
+    "https://www.hinatazaka46.com/s/official/diary/detail/35532?ima=0000&cd=member";
+  blog.posted_at = new Date("2020-09-09T22:47:00");
+  await con.manager.save(blog);
 
   //　サーバーを開始
   console.log("start server");

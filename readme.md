@@ -26,8 +26,7 @@ nodemon
 
 ### 接続
 
-http://localhost:3000/api/blogs/search?postedBy="aaaa"
-http://localhost:3000/api/blogs/search?postedBy[]=usio&postedBy[]=kageyama
+http://[ホスト名]:3000/api/blogs/search?postedBy[]=usio&postedBy[]=kageyama
 
 # プロセスを殺す
 
