@@ -37,6 +37,11 @@ const init = async () => {
 
   // Getルーティング
   const router: express.Router = express.Router();
+
+  router.get("/test", async (req: express.Request, res: express.Response) => {
+    res.send("get test ok");
+  });
+
   router.get(
     "/api/blogs/search",
     async (req: express.Request, res: express.Response) => {
@@ -70,6 +75,7 @@ const init = async () => {
       res.send(blogs);
     }
   );
+
   app.use(router);
 
   // 3001番ポートでAPIサーバ起動

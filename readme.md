@@ -26,9 +26,14 @@ nodemon
 
 ### 接続
 
-http://[ホスト名]:3000/api/blogs/search?postedBy[]=usio&postedBy[]=kageyama
+http://localhost:3000/test
+http://localhost:3000/api/blogs/search?postedBy[]=usio&postedBy[]=kageyama
 
 # プロセスを殺す
 
 ps -e | grep node | awk '{print \$1}'
 kill -9 [プロセス ID]
+
+# 参考
+
+https://qiita.com/ekzemplaro/items/bf9ffe81e948e77d0c3e
