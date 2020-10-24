@@ -26,13 +26,20 @@ nodemon
 
 ### 接続
 
-http://localhost:3000/test
-http://localhost:3000/api/blogs/search?postedBy[]=usio&postedBy[]=kageyama
+http://localhost:3001/test
+http://localhost:3001/api/blogs/search?postedBy[]=usio&postedBy[]=kageyama
 
 # プロセスを殺す
 
-ps -e | grep node | awk '{print \$1}'
+linux 編  
+https://eng-entrance.com/linux-command-ps
+ps -e | grep node
 kill -9 [プロセス ID]
+
+windows 編  
+コマンドプロント
+netstat -ano | find "3001"
+taskkill /f /pid 5664
 
 # 参考
 

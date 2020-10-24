@@ -46,19 +46,19 @@ const init = async () => {
     "/api/blogs/search",
     async (req: express.Request, res: express.Response) => {
       console.log("call", new Date());
-      const postedBys = req.query.postedBy.toString();
-      console.log(postedBys.split(","));
       const names = [];
-      for (const postedBy of postedBys.split(",")) {
-        const target = members.find((member) => {
-          return member.code === postedBy;
-        });
-        names.push(target.name);
-      }
-      console.log(names);
+      // if (req.query) {
+      //   const postedBys = req.query.postedBy.toString();
+      //   for (const postedBy of postedBys.split(",")) {
+      //     const target = members.find((member) => {
+      //       return member.code === postedBy;
+      //     });
+      //     names.push(target.name);
+      //   }
+      // }
       const blogEntities = await con.manager.find(Blogs, {
         take: 100,
-        where: { posted_by: In(names) },
+        // where: { posted_by: In(names) },
         order: { posted_at: "ASC" },
       });
 
@@ -79,8 +79,9 @@ const init = async () => {
   app.use(router);
 
   // 3001番ポートでAPIサーバ起動
-  app.listen(3000, () => {
-    console.log("Example app listening on port 3000!");
+  const port = 3001;
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}!`);
   });
 };
 
