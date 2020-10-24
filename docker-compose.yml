@@ -3,16 +3,15 @@ version: "3"
 services:
   appdb:
     image: postgres:latest
-    container_name: "typeOrmQuickStart"
+    container_name: "hinataBlogContainer"
     environment:
-      - POSTGRES_USER=test01
-      - POSTGRES_PASSWORD=test01
-      - POSTGRES_DB=test01
+      - POSTGRES_USER=hinata
+      - POSTGRES_PASSWORD=hinata
+      - POSTGRES_DB=hinataBlogDb
     ports:
       - "5432:5432"
     volumes:
       - database:/var/lib/postgresql/data
-#      - ./initdb:/docker-entrypoint-initdb.d
 
 volumes:
   database:
