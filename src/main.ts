@@ -1,6 +1,17 @@
 import "reflect-metadata";
 import express from "express";
-import { Connection, createConnection, In } from "typeorm";
+import {
+  Between,
+  Connection,
+  createConnection,
+  In,
+  IsNull,
+  LessThan,
+  LessThanOrEqual,
+  Like,
+  MoreThan,
+  MoreThanOrEqual,
+} from "typeorm";
 import { Blogs } from "./entity/blogs";
 import { Blog } from "./entity/blog";
 
@@ -9,13 +20,13 @@ const init = async () => {
   console.log("connect data base");
   const con = await createConnection();
 
-  const blog = new Blogs();
-  blog.posted_by = "金村美玖";
-  blog.title = "蚊取り線香の匂いがする";
-  blog.url =
-    "https://www.hinatazaka46.com/s/official/diary/detail/35532?ima=0000&cd=member";
-  blog.posted_at = new Date("2020-09-09T22:47:00");
-  await con.manager.save(blog);
+  // const blog = new Blogs();
+  // blog.posted_by = "金村美玖";
+  // blog.title = "蚊取り線香の匂いがする";
+  // blog.url =
+  //   "https://www.hinatazaka46.com/s/official/diary/detail/35532?ima=0000&cd=member";
+  // blog.posted_at = new Date("2020-09-09T22:47:00");
+  // await con.manager.save(blog);
 
   //　サーバーを開始
   console.log("start server");
@@ -46,19 +57,75 @@ const init = async () => {
     "/api/blogs/search",
     async (req: express.Request, res: express.Response) => {
       console.log("call", new Date());
-      const names = [];
-      // if (req.query) {
-      //   const postedBys = req.query.postedBy.toString();
-      //   for (const postedBy of postedBys.split(",")) {
-      //     const target = members.find((member) => {
-      //       return member.code === postedBy;
-      //     });
-      //     names.push(target.name);
-      //   }
-      // }
+      const names = new Array<string>();
+      const queries = req.query.postedBy;
+      const dateFromBuf = req.query.dateFrom;
+      const dateToBuf = req.query.dateTo;
+      const title = req.query.title;
+
+      if (queries) {
+        const postedBys = queries.toString();
+        for (const postedBy of postedBys.split(",")) {
+          const target = members.find((member) => {
+            return member.code === postedBy;
+          });
+          names.push(target.name);
+        }
+      }
+
+      let dateFrom: Date | undefined = undefined;
+      if (dateFromBuf) {
+        const [year, month, day] = dateFromBuf.toString().split("/");
+        dateFrom = new Date(Number(year), Number(month) - 1, Number(day));
+      }
+
+      let dateTo: Date | undefined = undefined;
+      if (dateToBuf) {
+        const [year, month, day] = dateToBuf.toString().split("/");
+        dateTo = new Date(Number(year), Number(month) - 1, Number(day));
+      }
+
+      const nameCondition =
+        names.length !== 0 ? { posted_by: In(names) } : undefined;
+
+      let dateFromCondition = undefined;
+      let dateToCondition = undefined;
+      let betweenCondition = undefined;
+
+      if (dateFrom && dateTo) {
+        betweenCondition = {
+          posted_at: Between(dateFrom, dateTo),
+        };
+      } else if (dateFrom) {
+        dateFromCondition = {
+          posted_at: MoreThanOrEqual(dateFrom),
+        };
+      } else if (dateTo) {
+        dateToCondition = {
+          posted_at: LessThanOrEqual(dateTo),
+        };
+      }
+
+      let titleCondition = undefined;
+      titleCondition = title
+        ? {
+            title: Like(`%${title}%`),
+          }
+        : undefined;
+
+      const searchCondition = {
+        ...nameCondition,
+        ...betweenCondition,
+        ...dateFromCondition,
+        ...dateToCondition,
+        ...titleCondition,
+      };
+
+      console.log(searchCondition);
+
       const blogEntities = await con.manager.find(Blogs, {
         take: 100,
-        // where: { posted_by: In(names) },
+        where: searchCondition,
         order: { posted_at: "ASC" },
       });
 
