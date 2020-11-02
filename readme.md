@@ -26,7 +26,7 @@ nodemon
 
 ### 接続
 
-http://localhost:3001/test
+http://localhost:3001/api/test
 http://localhost:3001/api/blogs/search
 http://localhost:3001/api/blogs/search?postedBy[]=usio&postedBy[]=kageyama&dateFrom=2016/8/3&dateTo=2016/8/5&title=%E3%81%AE
 

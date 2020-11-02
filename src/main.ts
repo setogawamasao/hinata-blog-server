@@ -49,13 +49,10 @@ const init = async () => {
   // Getルーティング
   const router: express.Router = express.Router();
 
-  router.get(
-    "/api/test",
-    async (req: express.Request, res: express.Response) => {
-      const value = req.query.value;
-      res.send(`get test ok : ${value}`);
-    }
-  );
+  router.get("/api", async (req: express.Request, res: express.Response) => {
+    const value = req.query.value;
+    res.send(`get test ok : ${value}`);
+  });
 
   router.get(
     "/api/blogs/search",
