@@ -55,7 +55,7 @@ const init = async () => {
   });
 
   router.get(
-    "/api/blogs/search",
+    "/api/blogs/search/aaa/",
     async (req: express.Request, res: express.Response) => {
       console.log("call", new Date());
       const names = new Array<string>();
