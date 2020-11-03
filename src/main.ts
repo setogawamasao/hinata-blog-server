@@ -157,7 +157,7 @@ const init = async () => {
 };
 
 const members = [
-  { code: "usio", name: "潮 紗理菜" },
+  { code: "ushio", name: "潮 紗理菜" },
   { code: "kageyama", name: "影山 優佳" },
   { code: "kato", name: "加藤 史帆" },
   { code: "saito", name: "齊藤 京子" },
@@ -171,9 +171,9 @@ const members = [
   { code: "kosaka", name: "小坂 菜緒" },
   { code: "tomita", name: "富田 鈴花" },
   { code: "nibu", name: "丹生 明里" },
-  { code: "hamgishi", name: "濱岸 ひより" },
-  { code: "matsuhda", name: "松田 好花" },
-  { code: "tomita", name: "宮田 愛萌" },
+  { code: "hamagishi", name: "濱岸 ひより" },
+  { code: "matsuda", name: "松田 好花" },
+  { code: "miyata", name: "宮田 愛萌" },
   { code: "watanabe", name: "渡邉 美穂" },
   { code: "kamimura", name: "上村 ひなの" },
   { code: "takahashi", name: "髙橋 未来虹" },
