@@ -67,6 +67,7 @@ const init = async () => {
       const dateToBuf = req.query.dateTo;
       const title = req.query.title;
       const sort = req.query.sort;
+      const showNumber = req.query.showNumber;
 
       if (queries) {
         const postedBys = queries.toString();
@@ -136,7 +137,7 @@ const init = async () => {
       }
 
       const blogEntities = await con.manager.find(Blogs, {
-        take: 100,
+        take: Number(showNumber),
         where: searchCondition,
         order: order,
       });

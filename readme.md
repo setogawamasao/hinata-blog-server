@@ -29,13 +29,15 @@ nodemon
 http://localhost:3001/api/test
 http://localhost:3001/api/blogs/search
 http://localhost:3001/api/blogs/search?postedBy[]=usio&postedBy[]=kageyama&dateFrom=2016/8/3&dateTo=2016/8/5&title=%E3%81%AE
+http://localhost:3001/api/blogs/search?sort=desc&showNumber=10
 http://localhost:3001/api/blogs/search?postedBy[]=ushio&postedBy[]=kageyama&dateFrom=2016/8/3&dateTo=2016/8/5&title=%E3%81%AE&sort=desc
 
 http://localhost:3001/api/blogs/search?postedBy[]=usio&postedBy[]=kageyama&dateFrom=2016/8/3&dateTo=2016/8/5&title=%E3%81%AE
 
 http://34.219.139.226/hinata-blogs-api/blogs/search?postedBy[]=ushio&postedBy[]=kageyama&dateFrom=2016/8/3&dateTo=2016/8/5&title=%E3%81%AE
+http://34.219.139.226/hinata-blogs-api/blogs/search?sort=desc&showNumber=10
 
-http://34.219.139.226/hinata-blogs-api/blogs/search?postedBy[]=ushio&postedBy[]=kageyama&dateFrom=2016/8/3&dateTo=2016/8/5&title=%E3%81%AE&sort=desc
+http://34.219.139.226/hinata-blogs-api/blogs/search?postedBy[]=ushio&postedBy[]=kageyama&dateFrom=2016/8/3&dateTo=2016/8/5&title=%E3%81%AE&sort=desc&showNumber=100
 
 # プロセスを殺す
 
