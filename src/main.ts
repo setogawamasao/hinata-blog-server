@@ -66,6 +66,7 @@ const init = async () => {
       const dateFromBuf = req.query.dateFrom;
       const dateToBuf = req.query.dateTo;
       const title = req.query.title;
+      const sort = req.query.sort;
 
       if (queries) {
         const postedBys = queries.toString();
@@ -127,10 +128,17 @@ const init = async () => {
 
       console.log(searchCondition);
 
+      let order = {};
+      if (sort === "asc") {
+        order = { posted_at: "ASC" };
+      } else if (sort === "desc") {
+        order = { posted_at: "DESC" };
+      }
+
       const blogEntities = await con.manager.find(Blogs, {
         take: 100,
         where: searchCondition,
-        order: { posted_at: "ASC" },
+        order: order,
       });
 
       const blogs = blogEntities.map((blogEntity) => {
